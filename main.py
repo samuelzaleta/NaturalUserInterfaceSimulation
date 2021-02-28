@@ -94,4 +94,10 @@ def main():
 if __name__ == '__main__':
     playaudio('Bienvenido a mixisdomotic')
     playaudio('Hola soy el señor mixi')
+    '''
+    Dispositivos por default
+    '''
+    dis1 = dispositivo('Dispositivo1',False)
+    dis2 = dispositivo('Dispositivo2', False)
+    dis3 = dispositivo('Dispositivo3', False)
     main()

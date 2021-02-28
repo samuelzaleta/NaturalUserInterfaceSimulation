@@ -1,12 +1,8 @@
 class dispositivo:
     nombre =''
-    lugar =''
-    numero =''
     estado =False
-    def __init__(self, nombre, lugar, numero, estado):
+    def __init__(self, nombre, estado):
         self.nombre = nombre
-        self.lugar = lugar
-        self.numero = numero
         self.estado = estado
     def incender(self, estado):
         if self.estado == False:
