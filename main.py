@@ -74,13 +74,15 @@ def main():
     respuesta2 = opcionesMenu(respuesta1)
 
     if respuesta2 == 1:
+        playaudio('Usted seleccionó configuración')
         configuracion()
     elif respuesta2 == 2:
+        playaudio('Usted seleccionó mis dispositivos')
         pass
     elif respuesta2 == 3:
         playaudio('Usted seleccionó buscar dispositivo')
         buscarDispositivo()
 if __name__ == '__main__':
     # playaudio('Bienvenido a mixisdomotic')
-    # playaudio('Hola soy el señor mixis')
+    # playaudio('Hola soy el señor mixi')
     main()
