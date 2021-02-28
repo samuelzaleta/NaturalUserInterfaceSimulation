@@ -38,7 +38,7 @@ def opcionesMenu(respuesta):
     tokens = [w for w in tokens if not w in palabras_vacias]
     print(tokens)
     accion = 0
-    for w in range(len(tokens)):
+    for w in range(len(set(tokens))):
         if tokens[w] == 'configuraciones':
             accion =1
         elif tokens[w] =='dispositivos':
@@ -69,17 +69,13 @@ def configuracion():
     main()
 def buscarDispositivo():
     x = random.choice(range(1,11))
+    playaudio('Buscando dispositivos')
     if x%2 == 0:
         print('Hola')
     else:
         playaudio('No se encontro dispositivo')
-        playaudio('¿Quiere volver a intentarlo?')
-        respuesta = word_tokenize(playmicrophone_10s())
-        if 'si' in respuesta:
-            buscarDispositivo()
-        else:
-            playaudio('Regresando a menu')
-            main()
+        playaudio('Regresando a menu')
+        main()
 
 def main():
     playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones')
