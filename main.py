@@ -90,7 +90,7 @@ def misDispositivos():
     playaudio('¿Que opcion desea? agregar dispositivo, eliminar dispositivo, activar dispositivo o desactivar dispositivo')
 
 def main():
-    playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones')
+    playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones; Cerrar aplicaciones')
     respuesta1 = playmicrophone_10s()
     respuesta2 = opcionesMenu(respuesta1)
 
