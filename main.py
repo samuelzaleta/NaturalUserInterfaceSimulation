@@ -48,6 +48,8 @@ def opcionesMenu(respuesta):
         elif tokens[w] =='cerrar':
             playaudio('Cerrando aplicacion')
             break
+        elif accion == 3:
+            return accion
         else:
             playaudio('Tu respuesta no coincide con las opciones del menú intenta otra vez')
             main()
@@ -57,10 +59,10 @@ def configuracion():
     playaudio('¿Quieres subir o bajarle audio?')
     respuesta =word_tokenize(playmicrophone_10s())
     print(respuesta)
-    if ('bajale' or 'bajar') and 'audio' in respuesta:
+    if ('bajale' or 'bajar') and ('audio' or 'volumen') in respuesta:
         print('Bajando volumen')
         playaudio('se bajó el volumen')
-    elif ('subele' or 'subir') and 'audio' in respuesta:
+    elif ('subele' or 'subir') and ('audio' or 'volumen') in respuesta:
         print('subiendo el volumen')
         playaudio('el volumen está más alto')
     playaudio('Regresando a menu')
@@ -89,7 +91,6 @@ def main():
         configuracion()
     elif respuesta2 == 2:
         playaudio('Usted seleccionó mis dispositivos')
-        pass
     elif respuesta2 == 3:
         playaudio('Usted seleccionó buscar dispositivo')
         buscarDispositivo()
