@@ -1,5 +1,4 @@
 import nltk
-from dispositivos import dispositivo
 import random
 from nltk import word_tokenize
 from nltk.corpus import stopwords
@@ -8,6 +7,15 @@ from gtts import gTTS
 from playsound import playsound
 import os
 
+'''
+Dispositivos por default
+'''
+dispositivos = [
+    ['Dispositivo1', False],
+    ['Dispositivo2', False],
+    ['Dispositivo3', False],
+    ['Dispositivo4', False]
+]
 def playaudio(text):
     audio =gTTS(text=text, lang='es', tld='com.mx')
     audio.save('audio.mp3')
@@ -76,6 +84,10 @@ def buscarDispositivo():
         playaudio('No se encontro dispositivo')
         playaudio('Regresando a menu')
         main()
+def misDispositivos():
+    numdisposit = str(len(dispositivos))
+    playaudio('Usted tiene ' + numdisposit)
+    playaudio('¿Que opcion desea? agregar dispositivo, eliminar dispositivo, activar dispositivo o desactivar dispositivo')
 
 def main():
     playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones')
@@ -87,6 +99,7 @@ def main():
         configuracion()
     elif respuesta2 == 2:
         playaudio('Usted seleccionó mis dispositivos')
+
     elif respuesta2 == 3:
         playaudio('Usted seleccionó buscar dispositivo')
         buscarDispositivo()
@@ -94,10 +107,4 @@ def main():
 if __name__ == '__main__':
     playaudio('Bienvenido a mixisdomotic')
     playaudio('Hola soy el señor mixi')
-    '''
-    Dispositivos por default
-    '''
-    dis1 = dispositivo('Dispositivo1',False)
-    dis2 = dispositivo('Dispositivo2', False)
-    dis3 = dispositivo('Dispositivo3', False)
     main()
