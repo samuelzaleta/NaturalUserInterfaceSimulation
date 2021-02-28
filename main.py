@@ -63,22 +63,24 @@ def configuracion():
     elif ('subele' or 'subir') and 'audio' in respuesta:
         print('subiendo el volumen')
         playaudio('el volumen está más alto')
+    playaudio('Regresando a menu')
+    main()
 def buscarDispositivo():
     x = random.choice(range(1,11))
     if x%2 == 0:
-        pass
+        print('Hola')
     else:
         playaudio('No se encontro dispositivo')
-        playaudio('¿Quiere volver a interlo?')
+        playaudio('¿Quiere volver a intentarlo?')
         respuesta = word_tokenize(playmicrophone_10s())
         if 'si' in respuesta:
             buscarDispositivo()
         else:
-            playaudio('Regresenado a menu')
+            playaudio('Regresando a menu')
             main()
 
 def main():
-    # playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones')
+    playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones')
     respuesta1 = playmicrophone_10s()
     respuesta2 = opcionesMenu(respuesta1)
 
@@ -93,6 +95,6 @@ def main():
         buscarDispositivo()
 
 if __name__ == '__main__':
-    # playaudio('Bienvenido a mixisdomotic')
-    # playaudio('Hola soy el señor mixi')
+    playaudio('Bienvenido a mixisdomotic')
+    playaudio('Hola soy el señor mixi')
     main()
