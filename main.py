@@ -46,23 +46,20 @@ def opcionesMenu(respuesta):
     tokens = [w for w in tokens if not w in palabras_vacias]
     print(tokens)
     accion = 0
-    for w in range(len(set(tokens))):
-        if tokens[w] == 'configuraciones':
-            accion =1
-            return accion
-        elif tokens[w] =='dispositivos':
-            accion +=2
-            return accion
-        elif tokens[w] =='buscar':
-            accion +=1
-        elif tokens[w] =='cerrar':
-            playaudio('Cerrando aplicacion')
-            break
-        elif accion == 3:
-            return accion
-        else:
-            playaudio('Tu respuesta no coincide con las opciones del menú intenta otra vez')
-            main()
+    if 'configuraciones' in tokens:
+        accion =1
+        return accion
+    elif 'dispositivos' and not 'buscar' in tokens:
+        accion =2
+        return accion
+    elif 'buscar' and 'dispositivos':
+        accion =3
+        return accion
+    elif 'cerrar' or 'cierra':
+        playaudio('Cerrando aplicacion')
+    else:
+        playaudio('Tu respuesta no coincide con las opciones del menú intenta otra vez')
+        main()
 
 
 def configuracion():
