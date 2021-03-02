@@ -49,8 +49,10 @@ def opcionesMenu(respuesta):
     for w in range(len(set(tokens))):
         if tokens[w] == 'configuraciones':
             accion =1
+            return accion
         elif tokens[w] =='dispositivos':
             accion +=2
+            return accion
         elif tokens[w] =='buscar':
             accion +=1
         elif tokens[w] =='cerrar':
@@ -61,7 +63,7 @@ def opcionesMenu(respuesta):
         else:
             playaudio('Tu respuesta no coincide con las opciones del menú intenta otra vez')
             main()
-    return accion
+
 
 def configuracion():
     playaudio('¿Quieres subir o bajarle audio?')
