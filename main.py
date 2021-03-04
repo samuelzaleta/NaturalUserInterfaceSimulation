@@ -44,13 +44,13 @@ def opcionesMenu(respuesta):
     if 'configuraciones' in tokens:
         accion = 1
         return accion
-    elif 'mis' and 'dispositivos' in tokens:
+    elif 'mis' in tokens:
         accion = 2
         return accion
-    elif 'buscar' and 'dispositivos' in tokens:
+    elif 'buscar' in tokens:
         accion = 3
         return accion
-    elif ('cerrar' or 'cierra') and 'aplicación' in tokens:
+    elif 'cerrar' in tokens:
         accion = 4
         return accion
     else:
@@ -64,17 +64,23 @@ def configuracion():
     if 'bajar' in respuesta:
         print('Bajando volumen')
         playaudio('se bajó el volumen')
+        playaudio('Regresando a menú')
+        main()
     elif 'subir' in respuesta:
         print('subiendo el volumen')
         playaudio('el volumen está más alto')
         playaudio('Regresando a menú')
         main()
+    else:
+        playaudio('Las respuestas no coinciden, trata de nuevo')
+        configuracion()
 
 def buscarDispositivo():
     x = random.choice(range(1,11))
     playaudio('Buscando dispositivos')
     if x % 2 == 0:
         playaudio('Dispositivo encontrado')
+        agregarDispositivo()
     else:
         playaudio('No se encontro dispositivo')
         playaudio('Regresando a menu')
@@ -102,7 +108,7 @@ def agregarDispositivo():
     playaudio('¿Cual será el nombre del nuevo dispositivo?')
     respuesta = str(playmicrophone_10s())
     print(respuesta)
-    dispositivos[len(dispositivos) -1] =[respuesta,False]
+    dispositivos.append([respuesta,False])
     playaudio('Se ha agregado el dispositivo ' + respuesta)
     print(dispositivos)
     main()
@@ -119,38 +125,41 @@ def eliminarDispositivo():
         if dispositivos[i][0] == respuesta:
             del dispositivos[i]
             print(dispositivos)
+            playaudio('eliminando dispositivo')
             playaudio('regresando a menú')
             main()
 
 def activarDispositivo():
     playaudio('¿que dispositivo activo?')
     for i in range(len(dispositivos)):
-        playaudio(dispositivos[i])
-    respuesta = word_tokenize(playmicrophone_10s())
+        dis =str(dispositivos[i])
+        playaudio(dis)
+    respuesta = str(playmicrophone_10s())
     print(respuesta)
     for i in range(len(dispositivos)):
         if dispositivos[i][0] == respuesta:
-            dispositivos[i][1]= True
+            dispositivos[i][1] = True
             print(dispositivos)
-            playaudio('Se ha activado dispositivo')
+            playaudio('Se ha activado dispositivo' + str(dispositivos[i][0]))
             playaudio('Regresando a menú')
             main()
 
 def desactivarDispositivo():
-    playaudio('¿que dispositivo activo?')
+    playaudio('¿que dispositivo desaactivo?')
     for i in range(len(dispositivos)):
-        playaudio(dispositivos[i])
-    respuesta = word_tokenize(playmicrophone_10s())
+        dis = str(dispositivos[i])
+        playaudio(dis)
+    respuesta = str(playmicrophone_10s())
     for i in range(len(dispositivos)):
         if dispositivos[i][0] == respuesta:
             dispositivos[i][1] = False
             print(dispositivos)
-            playaudio('Se ha desactivado dispositivo')
+            playaudio('Se ha desactivado dispositivo' + str(dispositivos[i][0]))
             playaudio('Regresando a menú')
             main()
 
 def main():
-    #playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones; Cerrar aplicación')
+    playaudio('¿Que opciones de menú desea? Mis dispositivos; Buscar dispositivos; Configuraciones; Cerrar aplicación')
     respuesta1 = playmicrophone_10s()
     respuesta2 = opcionesMenu(respuesta1)
 
@@ -169,6 +178,6 @@ def main():
         playaudio('Tu respuesta no coincide con las opciones del menú intenta otra vez')
         main()
 if __name__ == '__main__':
-    #playaudio('Bienvenido a mixisdomotic')
-    #playaudio('Hola soy el señor mixi')
+    playaudio('Bienvenido a mixisdomotic')
+    playaudio('Hola soy el señor mixi')
     main()
